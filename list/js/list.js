@@ -6,6 +6,9 @@ const completedContainer = document.querySelector(".completed-container");
 const createTaskContainer = document.querySelector(".create-task-container");
 const editTaskContainer = document.querySelector(".edit-task-container");
 
+const createTaskDialog = document.getElementById("create-dialog");
+const editTaskDialog = document.getElementById("edit-dialog");
+
 document.getElementById("add-task").addEventListener("click", () =>  {
     openCreateTask();
 });
@@ -94,28 +97,30 @@ completedContainer.onclick = function(event) {
 }
 
 let completedTasks = [];
-let uncompletedTasks = [new Task("a")];
+let uncompletedTasks = [new Task(1)];
 
+// открытие и закрытие окошек создания и редактирования дел
 function openCreateTask() {
-    createTaskContainer.style.display = "block";
+    createTaskDialog.showModal();
 }
 
 function closeCreateTask() {
-    createTaskContainer.style.display = "none";
+    createTaskDialog.close();
 }
 
 function openEditTask() {
-    editTaskContainer.style.display = "block";
+    editTaskDialog.showModal();
 }
 
 function closeEditTask() {
-    editTaskContainer.style.display = "none";
+    editTaskDialog.close();
 }
 
+// получить html-код элемента дела
 function getTaskCode(task, index, completed = false) {
     let code = "";
     if (!completed) {
-        code += `<span>${task.getDescription()}</span>`;
+        code += `<span class="task-description">${task.getDescription()}</span>`;
     }
     else {
         code += `<s>${task.getDescription()}</s>`;
@@ -141,6 +146,7 @@ function getTaskCode(task, index, completed = false) {
     return code;
 }
 
+// добавить дело в общий список
 function addTask(task, isCompleted) {
     if (!isCompleted) {
         uncompletedTasks.push(task);
@@ -189,4 +195,5 @@ function setTasks() {
     }
 }
 
+// старт
 setTasks();

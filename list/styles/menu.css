@@ -1,0 +1,13 @@
+.menu {
+    border: 1px solid black;
+    /* height: 10vh; */
+    width: calc(80vw + 20px);
+    position: relative;
+
+    margin: 0 10vw;
+}
+
+button {
+    font-family: 'Roboto', sans-serif;
+
+}

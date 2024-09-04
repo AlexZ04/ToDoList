@@ -1,0 +1,18 @@
+.task {
+    margin-bottom: 5px;
+}
+
+.task:hover {
+    background-color: red;
+}
+
+ul {
+    display: flex;
+}
+
+li {
+    border: 1px dashed gray;
+    border-radius: 10px;
+    list-style-type: none;
+    padding: 5px 10px;
+}

@@ -9,30 +9,63 @@
         <script type="module" src="js/taskClass.js" defer></script>
 
         <link rel="stylesheet" href="styles/style.css" />
+        <link rel="stylesheet" href="styles/menu.css" />
+        <link rel="stylesheet" href="styles/tasks.css" />
     </head>
     <body>
         <div class="container">
-            <div class="empty-tasks-container"><p>Пока здесь пусто...</p></div>
-            <div class="not-completed-container">
-                <ul></ul>
-            </div>
-            <div class="completed-container">
-                <ul></ul>
-            </div>
-            <button id="add-task">+</button>
+            <h2>Список дел</h2>
+            <div class="empty-tasks-container"><p><em>Пока здесь пусто...</em></p></div>
 
-            <div class="create-task-container" hidden>
-                <input type="text" id="task-text" autocomplete="off" placeholder="Введите текст дела">
-                <input type="checkbox" id="is-completed">
-                <button id="submit-create">Создать дело</button>
-                <button id="cancel">Отменить</button>
+            <div class="existing-tasks">
+                <div class="not-completed-container list-task">
+                    <ul></ul>
+                </div>
+                <div class="completed-container list-task">
+                    <ul></ul>
+                </div>
             </div>
 
-            <div class="edit-task-container" hidden>
-                <input type="text" id="task-edit-text" autocomplete="off" placeholder="Введите новый текст">
-                <button id="submit-edit">Изменить</button>
-                <button id="cancel-edit">Отменить</button>
+            <div class="menu">
+                <button id="add-task">+</button>
+                <button id="add-task">Сохранить</button>
+                <input type="file" accept=".txt">
             </div>
+
+            <dialog id="create-dialog">
+                <div class="create-task-container">
+
+                    <div class="text-place">
+                        <span>Текст дела:</span>
+                        <input type="text" id="task-text" autocomplete="off" placeholder="Введите текст дела">
+                    </div>
+
+                    <div class="checkbox-place">
+                        <span>Выполнено ли дело:</span>
+                        <input type="checkbox" id="is-completed">
+                    </div>
+
+                    <div class="buttons-place">
+                        <button id="submit-create">Создать дело</button>
+                        <button id="cancel">Отменить</button>
+                    </div>
+
+                </div>
+            </dialog>
+
+            <dialog id="edit-dialog">
+                <div class="edit-task-container">
+                    <div class="text-place">
+                        <span>Новый текст:</span>
+                        <input type="text" id="task-edit-text" autocomplete="off" placeholder="Введите новый текст">
+                    </div>
+
+                    <div class="buttons-place">
+                        <button id="submit-edit">Изменить</button>
+                        <button id="cancel-edit">Отменить</button>
+                    </div>
+                </div>
+            </dialog>
         </div>
     </body>
 </html>

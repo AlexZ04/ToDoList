@@ -1,33 +1,81 @@
-.empty-tasks-container {
-    display: none;
+@import url("https://fonts.googleapis.com/css?family=Roboto&display=swap");
+
+* {
+    box-sizing: border-box;
 }
 
-.not-completed-container {
-    display: none;
-    height: 40vh;
-    width: 40vw;
-    background-color: antiquewhite;
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
 
+    justify-content: center;
     overflow: hidden;
 }
 
-.not-completed-container:hover {
-    overflow: scroll;
+h2 {
+    text-align: center;
+    font-size: 2rem;
+}
+
+.empty-tasks-container p {
+    font-size: 4rem;
+
+    line-height: 50vh;
+
+}
+
+@media (max-width: 700px) {
+    .empty-tasks-container p {
+        font-size: 2rem;
+    }
+}
+
+.empty-tasks-container {
+    display: none;
+    border-radius: 10px;
+    border: 1px solid black;
+
+    height: 70vh;
+    width: calc(80vw + 20px);
+    margin: 0 10vw;
+    text-align: center;
+}
+
+.existing-tasks {
+    display: flex;
+
+    margin: 0 10vw;
+    margin-bottom: 30px;
+    width: calc(80vw + 20px);
+}
+
+
+.not-completed-container {
+    background-color: antiquewhite;
+    margin-right: 10px;
 }
 
 .completed-container {
-    display: none;
-    height: 40vh;
-    width: 40vw;
     background-color:aquamarine;
+    margin-left: 10px;
+}
+
+.list-task {
+    display: none;
+    height: 70vh;
+    width: 40vw;
+
+    border: 1px solid black;
+    border-radius: 10px;
+
+    /* margin: 0 10px; */
+
+    padding: 5px 10px;
 
     overflow: hidden;
 }
 
-.completed-container:hover {
-    overflow: scroll;
-}
 
-.task:hover {
-    background-color: red;
+.list-task:hover {
+    overflow: auto;
 }

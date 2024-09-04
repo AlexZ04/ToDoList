@@ -1,0 +1,33 @@
+.empty-tasks-container {
+    display: none;
+}
+
+.not-completed-container {
+    display: none;
+    height: 40vh;
+    width: 40vw;
+    background-color: antiquewhite;
+
+    overflow: hidden;
+}
+
+.not-completed-container:hover {
+    overflow: scroll;
+}
+
+.completed-container {
+    display: none;
+    height: 40vh;
+    width: 40vw;
+    background-color:aquamarine;
+
+    overflow: hidden;
+}
+
+.completed-container:hover {
+    overflow: scroll;
+}
+
+.task:hover {
+    background-color: red;
+}

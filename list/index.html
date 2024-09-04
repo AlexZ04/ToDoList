@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>To-Do List</title>
+
+        <script type="module" src="js/list.js" defer></script>
+        <script type="module" src="js/taskClass.js" defer></script>
+
+        <link rel="stylesheet" href="styles/style.css" />
+    </head>
+    <body>
+        <div class="container">
+            <div class="empty-tasks-container"><p>Пока здесь пусто...</p></div>
+            <div class="not-completed-container">
+                <ul></ul>
+            </div>
+            <div class="completed-container">
+                <ul></ul>
+            </div>
+            <button id="add-task">+</button>
+
+            <div class="create-task-container" hidden>
+                <input type="text" id="task-text" autocomplete="off" placeholder="Введите текст заметки">
+                <button id="submit-create">Создать дело</button>
+                <button id="cancel">Отменить</button>
+            </div>
+        </div>
+    </body>
+</html>

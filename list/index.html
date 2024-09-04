@@ -22,9 +22,16 @@
             <button id="add-task">+</button>
 
             <div class="create-task-container" hidden>
-                <input type="text" id="task-text" autocomplete="off" placeholder="Введите текст заметки">
+                <input type="text" id="task-text" autocomplete="off" placeholder="Введите текст дела">
+                <input type="checkbox" id="is-completed">
                 <button id="submit-create">Создать дело</button>
                 <button id="cancel">Отменить</button>
+            </div>
+
+            <div class="edit-task-container" hidden>
+                <input type="text" id="task-edit-text" autocomplete="off" placeholder="Введите новый текст">
+                <button id="submit-edit">Изменить</button>
+                <button id="cancel-edit">Отменить</button>
             </div>
         </div>
     </body>

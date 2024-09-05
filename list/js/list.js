@@ -102,7 +102,7 @@ completedContainer.onclick = function(event) {
 }
 
 let completedTasks = [];
-let uncompletedTasks = [new Task(1)];
+let uncompletedTasks = [];
 
 // открытие и закрытие окошек создания и редактирования дел
 function openCreateTask() {

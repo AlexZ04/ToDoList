@@ -7,6 +7,8 @@
     justify-content: space-between;
 
     transition: 0.7s ease-out;
+
+    word-break: break-all;
 }
 
 .task:hover {
@@ -25,7 +27,7 @@ li {
 }
 
 .task-text {
-    /* width: 80%; */
+    width: 80%;
     margin-top: 5px;
 }
 

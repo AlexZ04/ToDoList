@@ -33,12 +33,6 @@ li {
     background-color: rgb(169, 248, 132);
 }
 
-
-.done:hover {
-    background-color: rgb(193, 235, 159);
-}
-
-
 li button {
     background-color: white;
 

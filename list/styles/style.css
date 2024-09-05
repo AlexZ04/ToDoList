@@ -51,13 +51,15 @@ h2 {
 
 
 .not-completed-container {
-    background-color: antiquewhite;
+    background-color: white;
     margin-right: 10px;
+    margin-left: 0;
 }
 
 .completed-container {
-    background-color:aquamarine;
+    background-color:white;
     margin-left: 10px;
+    margin-right: 0;
 }
 
 .list-task {
@@ -78,4 +80,25 @@ h2 {
 
 .list-task:hover {
     overflow: auto;
+}
+
+.task-description {
+    text-align: center;
+    margin: 0;
+    height: 0;
+    /* width: 70vh; */
+    /* width: 0; */
+    font-size: large;
+    font-style: italic;
+    text-align: center;
+
+    margin-top: 30vh;
+}
+
+.left {
+    transform: rotate(-90deg);
+}
+
+.right {
+    transform: rotate(90deg);
 }

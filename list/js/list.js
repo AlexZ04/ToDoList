@@ -1,4 +1,5 @@
 import { Task } from "./taskClass.js";
+import { sendToast } from "./sendToast.js";
 
 const emptyContainer = document.querySelector(".empty-tasks-container");
 const notCompletedContainer = document.querySelector(".not-completed-container");
@@ -8,6 +9,8 @@ const editTaskContainer = document.querySelector(".edit-task-container");
 
 const createTaskDialog = document.getElementById("create-dialog");
 const editTaskDialog = document.getElementById("edit-dialog");
+
+const taskDescriptions = document.querySelectorAll(".task-description");
 
 document.getElementById("add-task").addEventListener("click", () =>  {
     openCreateTask();
@@ -25,7 +28,7 @@ document.getElementById("submit-create").addEventListener("click", () => {
         closeCreateTask();
     }
     else {
-        alert("Введите текст!");
+        sendToast("Введите текст!");
     }
 
 });
@@ -47,7 +50,7 @@ document.getElementById("submit-edit").addEventListener("click", () => {
         closeEditTask();
     }
     else {
-        alert("Текст не может быть пустым!")
+        sendToast("Текст заметки не может быть пустым!");
     }
 })
 
@@ -64,6 +67,7 @@ notCompletedContainer.onclick = function(event) {
         }
         else if (type === "check") {
             const task = uncompletedTasks[index];
+            task.changeStatus();
             uncompletedTasks.splice(index, 1);
             completedTasks.push(task);
             setTasks();
@@ -88,6 +92,7 @@ completedContainer.onclick = function(event) {
         }
         else if (type === "check") {
             const task = completedTasks[index];
+            task.changeStatus();
             completedTasks.splice(index, 1);
             uncompletedTasks.push(task);
             setTasks();
@@ -120,27 +125,29 @@ function closeEditTask() {
 function getTaskCode(task, index, completed = false) {
     let code = "";
     if (!completed) {
-        code += `<span class="task-description">${task.getDescription()}</span>`;
+        code += `<div class="task-text">${task.getDescription()}</div>`;
     }
     else {
-        code += `<s>${task.getDescription()}</s>`;
+        code += `<div class="task-text done">${task.getDescription()}</div>`;
     }
 
-    code += "<span>";
+    code += `<span class="task-buttons">`;
 
     if (!completed) {
-        code += `<button data-index="${index}" data-type="edit">Изменить</button>`
+        code += `<button class="edit-button" data-index="${index}" data-type="edit"></button>`
     }
 
-    code += `<button data-index="${index}" data-type="remove">Удалить</button>`;
+    code += `<button class="remove-button" data-index="${index}" data-type="remove"></button>`;
     
     if (!completed) {
-        code += `<input type="checkbox" data-index="${index}" data-type="check"></input>`;
+        code += `<input type="checkbox" data-index="${index}" data-type="check" class="real-checkbox" id="checkbox${index}"></input>`;
+        code += `<label class="custom-checkbox" for="checkbox${index}"></label>`;
     } 
     else {
-        code += `<input type="checkbox" checked data-index="${index}" data-type="check"></input>`;
+        code += `<input type="checkbox" checked data-index="${index}" data-type="check" name="check" class="real-checkbox" id="checkbox${uncompletedTasks.length + index}"></input>`;
+        code += `<label class="custom-checkbox" for="checkbox${uncompletedTasks.length + index}"></label>`;
     }
-    
+
     code += "</span>";
 
     return code;
@@ -164,10 +171,19 @@ function checkContainers() {
         notCompletedContainer.style.display = "none";
         completedContainer.style.display = "none";
         emptyContainer.style.display = "block";
+
+        for (const elem of taskDescriptions) {
+            elem.style.display = "none";
+        }
+
     } else {
         notCompletedContainer.style.display = "block";
         completedContainer.style.display = "block";
         emptyContainer.style.display = "none";
+
+        for (const elem of taskDescriptions) {
+            elem.style.display = "block";
+        }
     }
 }
 
@@ -197,3 +213,67 @@ function setTasks() {
 
 // старт
 setTasks();
+
+
+document.getElementById("save").onclick = function() {
+    let tempList = [];
+
+    for (const elem of uncompletedTasks) {
+        tempList.push(elem);
+    }
+    for (const elem of completedTasks) {
+        tempList.push(elem);
+    }
+
+    const data = JSON.stringify(tempList);
+
+    const blob = new Blob([data], {type: "application/json"});
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = 'tasks.json';
+    link.click();
+    URL.revokeObjectURL(link.href);
+};
+
+
+document.getElementById("text-input").addEventListener("change", handleFiles);
+
+function handleFiles() {
+    const file = this.files[0];
+
+    if (file) {
+        const reader = new FileReader();
+
+        reader.readAsText(file);
+
+        reader.onload = function() {
+            const data = JSON.parse(reader.result);
+
+            completedTasks = []
+            uncompletedTasks = []
+
+            for (const elem of data) {
+                if (elem["completed"])  {
+                    completedTasks.push(new Task(elem["description"], true));
+                }
+                else {
+                    uncompletedTasks.push(new Task(elem["description"]));
+                }
+            }
+
+            setTasks();
+
+        };
+    }
+
+}
+
+const infoDialog = document.getElementById("info-dialog");
+
+document.getElementById("info-button").addEventListener("click", () => {
+    infoDialog.showModal();
+});
+
+document.getElementById("close-dialog").addEventListener("click", () => {
+    infoDialog.close();
+});

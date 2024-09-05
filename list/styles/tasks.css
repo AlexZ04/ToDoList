@@ -1,13 +1,17 @@
 .task {
     margin-bottom: 5px;
+    overflow: auto;
+    position: relative;
+    display: flex;
+
+    justify-content: space-between;
+
+    transition: 0.7s ease-out;
 }
 
 .task:hover {
-    background-color: red;
-}
-
-ul {
-    display: flex;
+    background-color: rgb(247, 245, 245);
+    border: 1px solid black;
 }
 
 li {
@@ -15,4 +19,45 @@ li {
     border-radius: 10px;
     list-style-type: none;
     padding: 5px 10px;
+
+    position: relative;
+
+}
+
+.task-text {
+    /* width: 80%; */
+    margin-top: 5px;
+}
+
+.completed-container .task:hover{
+    background-color: rgb(169, 248, 132);
+}
+
+
+.done:hover {
+    background-color: rgb(193, 235, 159);
+}
+
+
+li button {
+    background-color: white;
+
+    background-size: 75%;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    width: 30px;
+    height: 30px;
+
+    border-radius: 50%;
+}
+
+.edit-button {
+    background-image: url("../img/edit.webp");
+    margin-right: 5px;
+}
+
+.remove-button {
+    background-image: url("../img/delete.png");
+    margin-right: 5px;
 }

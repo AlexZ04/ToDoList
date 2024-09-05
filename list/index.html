@@ -11,6 +11,13 @@
         <link rel="stylesheet" href="styles/style.css" />
         <link rel="stylesheet" href="styles/menu.css" />
         <link rel="stylesheet" href="styles/tasks.css" />
+        <link rel="stylesheet" href="styles/checkbox.css" />
+        <link rel="stylesheet" href="styles/dialog.css" />
+        <link rel="stylesheet" href="styles/file-input.css" />
+
+        <link rel="stylesheet" href="../libs/Toast/toast.min.css">
+        <script src="../libs/Toast/toast.min.js"></script>
+
     </head>
     <body>
         <div class="container">
@@ -18,18 +25,23 @@
             <div class="empty-tasks-container"><p><em>Пока здесь пусто...</em></p></div>
 
             <div class="existing-tasks">
+                <span class="task-description left">Нужно сделать</span>
+
                 <div class="not-completed-container list-task">
                     <ul></ul>
                 </div>
                 <div class="completed-container list-task">
                     <ul></ul>
                 </div>
+
+                <span class="task-description right">Выполнено</span>
             </div>
 
             <div class="menu">
-                <button id="add-task">+</button>
-                <button id="add-task">Сохранить</button>
-                <input type="file" accept=".txt">
+                <button id="add-task" class="menu-button add"></button>
+                <button id="save" class="menu-button save"></button>
+                <input type="file" accept=".json" id="text-input" class="file-input">
+                <label for="text-input" class="custom-file-input"></label>
             </div>
 
             <dialog id="create-dialog">
@@ -65,6 +77,14 @@
                         <button id="cancel-edit">Отменить</button>
                     </div>
                 </div>
+            </dialog>
+
+            <button id="info-button" class="menu-button info"></button>
+            <dialog id="info-dialog">
+                <p>Список дел. Здесь можно добавить дело, изменить и удалить его.</p>
+                <p>Для добавления нажмите на плюсик.</p>
+                <p>Чтобы сохранить список дел, нажмите на кнопку сохранения. Вы можете загрузить эти файлы позже.</p>
+                <button id="close-dialog" class="menu-button close"></button>
             </dialog>
         </div>
     </body>

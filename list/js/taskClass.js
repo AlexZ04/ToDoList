@@ -1,7 +1,7 @@
 export class Task {
-    constructor(description) {
+    constructor(description, completed = false) {
         this.description = description;
-        this.completed = false;
+        this.completed = completed;
     }
 
     changeStatus() {

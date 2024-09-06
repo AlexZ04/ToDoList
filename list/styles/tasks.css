@@ -57,3 +57,7 @@ li button {
     background-image: url("../img/delete.png");
     margin-right: 5px;
 }
+
+.edit-button:hover, .remove-button:hover, .custom-checkbox:hover {
+    background-color: rgb(243, 235, 228);
+}

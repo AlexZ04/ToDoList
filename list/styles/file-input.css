@@ -17,6 +17,8 @@
     position: fixed;
     right: 5vw;
     bottom: 5vh;
+
+    transition: 0.3s transform ease-in;
 }
 
 .file-input {

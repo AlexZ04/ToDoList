@@ -26,11 +26,11 @@ button {
 
     font-size: large;
 
-    transition: 0.3s transform ease-in;
+    transition: 0.3s ease-in;
 
 }  
 
-.info:hover {
+.info:hover, .menu-button:hover, .custom-file-input:hover {
     transform: scale(1.2);
 }
 
@@ -45,6 +45,8 @@ button {
     height: 50px;
 
     border-radius: 50%;
+
+    transition: 0.3s transform ease-in;
 }
 
 .save {
@@ -61,6 +63,9 @@ button {
     position: fixed;
     left: 5vw;
     bottom: 5vh;
+
+    width: 80px;
+    height: 80px;
 }
 
 .close {

@@ -1,5 +1,6 @@
 import { Task } from "./taskClass.js";
 import { sendToast } from "./sendToast.js";
+import { uncompDragStart, uncompDragEnd, compDragStart, compDragEnd } from "./drag&drop.js";
 
 const emptyContainer = document.querySelector(".empty-tasks-container");
 const notCompletedContainer = document.querySelector(".not-completed-container");
@@ -197,7 +198,11 @@ function setTasks() {
     for (let i = 0; i < uncompletedTasks.length; i++) {
         const newListItem = document.createElement('li');
         newListItem.innerHTML = getTaskCode(uncompletedTasks[i], i);
-        newListItem.className = "task";
+        newListItem.className = "task done-task";
+        newListItem.draggable = true;
+
+        newListItem.addEventListener("dragstart", uncompDragStart);
+        newListItem.addEventListener("dragend", uncompDragEnd);
 
         document.querySelector(".not-completed-container").appendChild(newListItem);
     }
@@ -205,7 +210,11 @@ function setTasks() {
     for (let i = 0; i < completedTasks.length; i++) {
         const newListItem = document.createElement('li');
         newListItem.innerHTML = getTaskCode(completedTasks[i], i, true);
-        newListItem.className = "task";
+        newListItem.className = "task not-done-text";
+        newListItem.draggable = true;
+
+        newListItem.addEventListener("dragstart", compDragStart);
+        newListItem.addEventListener("dragend", compDragEnd);
 
         document.querySelector(".completed-container").appendChild(newListItem);
     }

@@ -75,3 +75,7 @@ button {
 
     background-size: 60%;
 }
+
+button {
+    border: 1px solid black;
+}

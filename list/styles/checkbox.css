@@ -29,11 +29,11 @@
 
 }
 
-.real-checkbox:checked + .custom-checkbox::before {
+.real-checkbox:checked + .custom-checkbox::before, .add-task-checkbox:checked + .custom-checkbox::before {
     transform: translate(-50%, -50%) scale(1);
 }
 
-.real-checkbox {
+.real-checkbox, .add-task-checkbox {
     width: 0;
     height: 0;
     opacity: 0;

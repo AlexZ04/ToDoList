@@ -48,13 +48,14 @@
                 <div class="create-task-container">
 
                     <div class="text-place">
-                        <span>Текст дела:</span>
+                        <label for="task-text">Текст дела:</label>
                         <input type="text" id="task-text" autocomplete="off" placeholder="Введите текст дела">
                     </div>
 
                     <div class="checkbox-place">
-                        <span>Выполнено ли дело:</span>
-                        <input type="checkbox" id="is-completed">
+                        <label for="is-completed">Выполнено ли дело:</label>
+                        <input type="checkbox" id="is-completed" class="add-task-checkbox">
+                        <label for="is-completed" class="custom-checkbox add-check-label"></label>
                     </div>
 
                     <div class="buttons-place">
@@ -68,7 +69,7 @@
             <dialog id="edit-dialog">
                 <div class="edit-task-container">
                     <div class="text-place">
-                        <span>Новый текст:</span>
+                        <label for="task-edit-text">Новый текст:</label>
                         <input type="text" id="task-edit-text" autocomplete="off" placeholder="Введите новый текст">
                     </div>
 

@@ -265,6 +265,7 @@ function handleFiles() {
 
         };
     }
+    this.value = "";
 
 }
 

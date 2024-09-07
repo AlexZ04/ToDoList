@@ -9,11 +9,22 @@
     transition: 0.7s ease-out;
 
     word-break: break-all;
+
+    cursor: move;
 }
 
 .task:hover {
     background-color: rgb(247, 245, 245);
     border: 1px solid black;
+}
+
+.completed-container .task:hover{
+    background-color: rgb(169, 248, 132);
+}
+
+.shake:hover, .completed-container .shake:hover {
+    background-color: white;
+    border: 1px dashed gray;
 }
 
 li {
@@ -29,10 +40,6 @@ li {
 .task-text {
     width: 80%;
     margin-top: 5px;
-}
-
-.completed-container .task:hover{
-    background-color: rgb(169, 248, 132);
 }
 
 li button {

@@ -1,6 +1,6 @@
 import { Task } from "./taskClass.js";
 import { sendToast } from "./sendToast.js";
-import { uncompDragStart, uncompDragEnd, compDragStart, compDragEnd } from "./drag&drop.js";
+import { uncompDragStart, uncompDragEnd, compDragStart, compDragEnd, compDragOver, uncompDragOver } from "./drag&drop.js";
 
 const emptyContainer = document.querySelector(".empty-tasks-container");
 const notCompletedContainer = document.querySelector(".not-completed-container");
@@ -173,18 +173,14 @@ function checkContainers() {
         completedContainer.style.display = "none";
         emptyContainer.style.display = "block";
 
-        for (const elem of taskDescriptions) {
-            elem.style.display = "none";
-        }
+        taskDescriptions.forEach(elem => elem.style.display = "none");
 
     } else {
         notCompletedContainer.style.display = "block";
         completedContainer.style.display = "block";
         emptyContainer.style.display = "none";
 
-        for (const elem of taskDescriptions) {
-            elem.style.display = "block";
-        }
+        taskDescriptions.forEach(elem => elem.style.display = "block");
     }
 }
 
@@ -203,6 +199,7 @@ function setTasks() {
 
         newListItem.addEventListener("dragstart", uncompDragStart);
         newListItem.addEventListener("dragend", uncompDragEnd);
+        newListItem.addEventListener("dragover", uncompDragOver);
 
         document.querySelector(".not-completed-container").appendChild(newListItem);
     }
@@ -210,11 +207,12 @@ function setTasks() {
     for (let i = 0; i < completedTasks.length; i++) {
         const newListItem = document.createElement('li');
         newListItem.innerHTML = getTaskCode(completedTasks[i], i, true);
-        newListItem.className = "task not-done-text";
+        newListItem.className = "task not-done-task";
         newListItem.draggable = true;
 
         newListItem.addEventListener("dragstart", compDragStart);
         newListItem.addEventListener("dragend", compDragEnd);
+        newListItem.addEventListener("dragover", compDragOver);
 
         document.querySelector(".completed-container").appendChild(newListItem);
     }
@@ -227,12 +225,13 @@ setTasks();
 document.getElementById("save").onclick = function() {
     let tempList = [];
 
-    for (const elem of uncompletedTasks) {
-        tempList.push(elem);
-    }
-    for (const elem of completedTasks) {
-        tempList.push(elem);
-    }
+    document.querySelector(".not-completed-container").childNodes.forEach(elem => {
+        tempList.push(new Task(elem.childNodes[0].textContent));
+    });
+
+    document.querySelector(".completed-container").childNodes.forEach(elem => {
+        tempList.push(new Task(elem.childNodes[0].textContent, true));
+    });
 
     const data = JSON.stringify(tempList);
 
@@ -261,14 +260,14 @@ function handleFiles() {
             completedTasks = []
             uncompletedTasks = []
 
-            for (const elem of data) {
+            data.forEach(elem => {
                 if (elem["completed"])  {
                     completedTasks.push(new Task(elem["description"], true));
                 }
                 else {
                     uncompletedTasks.push(new Task(elem["description"]));
                 }
-            }
+            });
 
             setTasks();
 
